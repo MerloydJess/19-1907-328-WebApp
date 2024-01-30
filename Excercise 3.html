@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to my Web Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: #333;
+        padding: 15px;
+        text-align: center;
+        color: white;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        background-color: #444;
+        padding: 10px;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        margin: 0 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+        background-color: #555;
+    }
+
+    section {
+        padding: 20px;
+        margin: 20px;
+    }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: 0; /* Remove border around iframe */
+        }
+
+        .twitter-container {
+            width: 100%;
+            max-width: 600px; /* Adjust the maximum width as needed */
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        h2 {
+            text-align: center;
+            color: #1da1f2; /* Twitter blue color */
+        }
+
+        .twitter-timeline {
+            width: 100%;
+            min-height: 400px; /* Adjust the minimum height as needed */
+            border: 0;
+        }
+</style>
+
+<body>
+    <header>
+        <h1>My Webpage</h1>
+    </header>
+
+    <nav>
+        <a href="#section1">Section 1</a>
+        <a href="#section2">Section 2</a>
+        <a href="#section3">Section 3</a>
+    </nav>
+
+    <section id="section1">
+        <h2>Section 1</h2>
+        <p>Welcome to Section 1</p>
+        <img src="https://www.w3schools.com/html/pic_trulli.jpg" alt="The World Health Organization (WHO) is Finland’s most important international partner in the development and evaluation of health policy in Finland and globally. Finland is an active participant in global health policy and the international development of the various areas of health policy. Finland’s participation and policy opinions in WHO are the responsibility of the Ministry of Social Affairs and Health, together with other ministries.  WHO’s role in international health policy is defined by the Constitution of the World Health Organization (1946), which specifies WHO’s objective as “the attainment by all peoples of the highest possible level of health”. WHO has a leading role in the normative work, development and coordination of global health policy. WHO may propose conventions, agreements and regulations, and make recommendations with respect to health matters. WHO monitors the global health situation, produces global health statistics regularly and keeps the disease classification system up-to-date. It also steers the direction of international research in the field of health, and supports the practical application of research results. Upon request, WHO can provide its member states with expert support on health policy development and health emergencies, for example.
+        WHO has 194 member states across six regions. In Europe, WHO has 53 member states. The World Health Assembly is the highest governing body of WHO. It meets annually and decides on the direction of global health policy. The Executive Board, with 34 members, prepares the World Health Assembly and implements its decisions. Finland was a member of the Executive Board from 2018 to 2021 and Vice-Chair from 2018 to 2020. 
+        ">
+        <p>Abbreviation: <abbr title="World Health Organization">WHO</abbr></p>
+    </section>
+
+    <section id="section2">
+        <h2>Section 2</h2>
+        <p>This is the content of section 2.</p>
+        <img src="image2.jpg" alt="Description of Image 2">
+        <p>Citation: <cite>Author, Title, Year</cite></p>
+    </section>
+
+    <section id="section3">
+        <h2>Section 3</h2>
+        <p>This is the content of section 3.</p>
+        <img src="image3.jpg" alt="Description of Image 3">
+    </section>
+
+    <script src="your-script.js"></script>
+
+    <form id="myForm" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+
+        <label for="birthdate">Birthdate:</label>
+        <input type="date" id="birthdate" name="birthdate" required>
+
+        <label for="customCode">Custom Code (ABC-123):</label>
+        <input type="text" id="customCode" name="customCode" pattern="[A-Za-z]{3}-[0-9]{3}" title="Format: ABC-123">
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function validateForm() {
+            var form = document.getElementById('myForm');
+            var isValid = form.checkValidity();
+
+            if (!isValid) {
+                var elements = form.elements;
+                for (var i = 0; i < elements.length; i++) {
+                    if (!elements[i].checkValidity()) {
+                        showErrorMessage(elements[i]);
+                    }
+                }
+
+                return false;
+            }
+
+            return true;
+        }
+
+        function showErrorMessage(element) {
+            var errorElement = document.createElement('div');
+            errorElement.className = 'error';
+            errorElement.textContent = element.validationMessage || 'Invalid input';
+
+            element.parentNode.insertBefore(errorElement, element.nextSibling);
+        }
+
+        var inputs = document.querySelectorAll('input, select');
+        inputs.forEach(function (input) {
+            input.addEventListener('input', function () {
+                var errorElement = input.nextElementSibling;
+                if (errorElement && errorElement.className === 'error') {
+                    errorElement.parentNode.removeChild(errorElement);
+                }
+            });
+        });
+    </script>
+
+    <h2>Google Map Embed</h2>
+    <iframe
+        width="600"
+        height="450"
+        style="border:0"
+        loading="lazy"
+        allowfullscreen
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.581480939967!2d-75.16522168462218!3d39.95258327755225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6c62f7f23ce99%3A0xd9d61b5f604bcfe9!2sIndependence%20Hall!5e0!3m2!1sen!2sus!4v1622644684663!5m2!1sen!2sus"
+        allowfullscreen
+    ></iframe>
+
+    <h2>Twitter Feed Embed</h2>
+    <div class="twitter-container">
+        <a class="twitter-timeline" data-height="400" data-theme="light" href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Tweets by TwitterDev</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+
+</body>
+</html>

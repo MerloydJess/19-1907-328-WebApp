@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form with Validation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="myForm" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+
+        <label for="birthdate">Birthdate:</label>
+        <input type="date" id="birthdate" name="birthdate" required>
+
+        <label for="customCode">Custom Code (ABC-123):</label>
+        <input type="text" id="customCode" name="customCode" pattern="[A-Za-z]{3}-[0-9]{3}" title="Format: ABC-123">
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function validateForm() {
+            var form = document.getElementById('myForm');
+            var isValid = form.checkValidity();
+
+            if (!isValid) {
+                // If the form is not valid, show error messages
+                var elements = form.elements;
+                for (var i = 0; i < elements.length; i++) {
+                    if (!elements[i].checkValidity()) {
+                        showErrorMessage(elements[i]);
+                    }
+                }
+
+                return false;
+            }
+
+            // If the form is valid, you can perform additional actions here
+            return true;
+        }
+
+        function showErrorMessage(element) {
+            var errorElement = document.createElement('div');
+            errorElement.className = 'error';
+            errorElement.textContent = element.validationMessage || 'Invalid input';
+
+            // Insert the error message after the input element
+            element.parentNode.insertBefore(errorElement, element.nextSibling);
+        }
+
+        // Remove error messages on input change
+        var inputs = document.querySelectorAll('input, select');
+        inputs.forEach(function (input) {
+            input.addEventListener('input', function () {
+                var errorElement = input.nextElementSibling;
+                if (errorElement && errorElement.className === 'error') {
+                    errorElement.parentNode.removeChild(errorElement);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
